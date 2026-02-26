@@ -46,29 +46,29 @@ export function getNutrientUnit(
     let results: string[] = [];
     for (let oneNutrientName of nutrientName) {
       switch (oneNutrientName) {
-      case 'calories':
-        results.push(currentEnergyUnit);
-      case 'protein':
-      case 'carbs':
-      case 'fat':
-      case 'saturated_fat':
-      case 'polyunsaturated_fat':
-      case 'monounsaturated_fat':
-      case 'trans_fat':
-      case 'dietary_fiber':
-      case 'sugars':
-        results.push('g');
-      case 'cholesterol':
-      case 'sodium':
-      case 'potassium':
-      case 'vitamin_c':
-      case 'calcium':
-      case 'iron':
-        results.push('mg');
-      case 'vitamin_a':
-        results.push('μg');
-      default:
-        results.push('');
+        case 'calories':
+          results.push(currentEnergyUnit);
+        case 'protein':
+        case 'carbs':
+        case 'fat':
+        case 'saturated_fat':
+        case 'polyunsaturated_fat':
+        case 'monounsaturated_fat':
+        case 'trans_fat':
+        case 'dietary_fiber':
+        case 'sugars':
+          results.push('g');
+        case 'cholesterol':
+        case 'sodium':
+        case 'potassium':
+        case 'vitamin_c':
+        case 'calcium':
+        case 'iron':
+          results.push('mg');
+        case 'vitamin_a':
+          results.push('μg');
+        default:
+          results.push('');
       }
       return results;
     }
