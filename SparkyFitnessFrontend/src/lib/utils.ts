@@ -13,33 +13,65 @@ export function formatDateToYYYYMMDD(date: Date): string {
 }
 
 export function getNutrientUnit(
-  nutrientName: string,
+  nutrientName: string | string[],
   currentEnergyUnit: 'kcal' | 'kJ' = 'kcal'
-): string {
-  switch (nutrientName) {
-    case 'calories':
-      return currentEnergyUnit;
-    case 'protein':
-    case 'carbs':
-    case 'fat':
-    case 'saturated_fat':
-    case 'polyunsaturated_fat':
-    case 'monounsaturated_fat':
-    case 'trans_fat':
-    case 'dietary_fiber':
-    case 'sugars':
-      return 'g';
-    case 'cholesterol':
-    case 'sodium':
-    case 'potassium':
-    case 'vitamin_c':
-    case 'calcium':
-    case 'iron':
-      return 'mg';
-    case 'vitamin_a':
-      return 'μg';
-    default:
-      return '';
+): string | string[] {
+  if (!Array.isArray(nutrientName)) {
+    switch (nutrientName) {
+      case 'calories':
+        return currentEnergyUnit;
+      case 'protein':
+      case 'carbs':
+      case 'fat':
+      case 'saturated_fat':
+      case 'polyunsaturated_fat':
+      case 'monounsaturated_fat':
+      case 'trans_fat':
+      case 'dietary_fiber':
+      case 'sugars':
+        return 'g';
+      case 'cholesterol':
+      case 'sodium':
+      case 'potassium':
+      case 'vitamin_c':
+      case 'calcium':
+      case 'iron':
+        return 'mg';
+      case 'vitamin_a':
+        return 'μg';
+      default:
+        return '';
+    }
+  } else {
+    let results: string[] = [];
+    for (let oneNutrientName of nutrientName) {
+      switch (oneNutrientName) {
+      case 'calories':
+        results.push(currentEnergyUnit);
+      case 'protein':
+      case 'carbs':
+      case 'fat':
+      case 'saturated_fat':
+      case 'polyunsaturated_fat':
+      case 'monounsaturated_fat':
+      case 'trans_fat':
+      case 'dietary_fiber':
+      case 'sugars':
+        results.push('g');
+      case 'cholesterol':
+      case 'sodium':
+      case 'potassium':
+      case 'vitamin_c':
+      case 'calcium':
+      case 'iron':
+        results.push('mg');
+      case 'vitamin_a':
+        results.push('μg');
+      default:
+        results.push('');
+      }
+      return results;
+    }
   }
 }
 
